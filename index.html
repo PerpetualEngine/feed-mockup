@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Perpetual Engine — Feed grid mockup</title>
+<style>
+  :root{
+    --green:#c9f57e; --ink:#18191b; --green-ink:#0d3300; --green-deep:#4e8c12;
+    --dark1:#0d3300; --dark2:#061b00; --paperwhite:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;background:#e9ece3;display:flex;justify-content:center;padding:34px 16px 60px;-webkit-font-smoothing:antialiased}
+  .phone{width:430px;background:#fff;border-radius:30px;overflow:hidden;box-shadow:0 30px 80px rgba(13,51,0,.22)}
+
+  /* IG profile chrome */
+  .ig-top{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 6px}
+  .ig-top .h{font-weight:700;font-size:17px;color:#18191b;display:flex;align-items:center;gap:6px}
+  .ig-top .h .lock{font-size:12px;color:#8a8f82}
+  .ig-top .dots{color:#18191b;font-size:20px;letter-spacing:2px}
+  .ig-head{display:flex;align-items:center;gap:24px;padding:10px 20px 4px}
+  .ava{width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#1c5a00,#0d3300);display:flex;align-items:center;justify-content:center;flex:0 0 auto;border:2px solid #fff;box-shadow:0 0 0 2px #d8e6c4}
+  .ava b{width:15px;height:15px;border-radius:50%;background:var(--green)}
+  .stats{display:flex;gap:26px;flex:1}
+  .stat{ text-align:center}
+  .stat b{display:block;font-size:17px;color:#18191b;font-weight:700}
+  .stat span{font-size:13px;color:#5a5f52}
+  .ig-bio{padding:6px 20px 14px}
+  .ig-bio .name{font-weight:700;font-size:14px;color:#18191b}
+  .ig-bio .cat{font-size:13px;color:#5a5f52}
+  .ig-bio p{font-size:13.5px;color:#26281f;line-height:1.4;margin-top:3px}
+  .ig-bio .link{color:#3a6b16;font-weight:600;font-size:13.5px;margin-top:2px;display:inline-block}
+  .ig-actions{display:flex;gap:8px;padding:2px 20px 16px}
+  .ig-actions .b1{flex:1;background:#1c7a00;color:#fff;text-align:center;padding:8px;border-radius:9px;font-weight:600;font-size:14px}
+  .ig-actions .b2{flex:1;background:#eef1ea;color:#18191b;text-align:center;padding:8px;border-radius:9px;font-weight:600;font-size:14px}
+  .ig-tabs{display:flex;border-top:1px solid #ededed}
+  .ig-tabs div{flex:1;text-align:center;padding:11px;font-size:18px;color:#b7bbb0;border-bottom:2px solid transparent}
+  .ig-tabs div.on{color:#18191b;border-bottom:2px solid #18191b}
+
+  /* GRID */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;background:#fff}
+  .tile{position:relative;aspect-ratio:1/1;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:13px 13px}
+  .tile.dark{background:linear-gradient(160deg,var(--dark1),var(--dark2));color:#eaf6d6}
+  .tile.white{background:#fff;color:var(--ink)}
+  .tile.clip::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center}
+  .tile.clip.trust::before{background-image:url(posters/trust.jpg)}
+  .tile.clip.listen::before{background-image:url(posters/listen.jpg)}
+  .tile.clip.choose::before{background-image:url(posters/choose.jpg)}
+  .tile.clip::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,27,0,.45) 0%,rgba(7,27,0,.30) 40%,rgba(7,27,0,.88) 100%)}
+  .tile.clip > *{position:relative;z-index:2}
+
+  /* brand mark */
+  .mk{display:flex;align-items:center;gap:6px;font-size:9.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase}
+  .mk i{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block}
+  .dark .mk{color:#bcd89a}
+  .white .mk{color:#3a6b16}
+  .clip .mk{color:#cfe6ad}
+
+  /* type icon top-right */
+  .ic{position:absolute;top:13px;right:13px;z-index:3;color:#fff;opacity:.95}
+  .ic.reel::before{content:"";display:block;width:0;height:0;border-left:13px solid currentColor;border-top:8px solid transparent;border-bottom:8px solid transparent}
+  .ic.caro{width:15px;height:15px;border:2px solid currentColor;border-radius:3px;box-shadow:3px -3px 0 -2px currentColor, 5px -5px 0 -3px currentColor}
+  .white .ic.caro{color:#18191b}
+  .dark .ic.caro{color:#cfe6ad}
+
+  /* titles */
+  .big{font-weight:800;line-height:1.0;letter-spacing:-.4px;text-transform:uppercase}
+  .white .big{font-size:18px;color:#15160f}
+  .dark .big{font-size:17px;color:#fff}
+  .sub{font-size:11px;font-weight:600;margin-top:7px;letter-spacing:.2px}
+  .dark .sub{color:var(--green)}
+  .grn{color:var(--green-deep)}
+  .dark .grn{color:var(--green)}
+  .ubar{height:4px;width:34px;background:var(--green);border-radius:4px;margin-top:8px}
+  .quote{font-size:15.5px;line-height:1.22;font-weight:600}
+  .dark .quote{color:#eef7df}
+  .cap{font-size:14px;font-weight:600;line-height:1.25;color:#fff}
+  .tag{display:inline-block;background:var(--green);color:var(--green-ink);font-size:9.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:100px;margin-bottom:7px}
+  .sig{font-size:11px;color:var(--green);font-style:italic;opacity:.9}
+  .dots{display:flex;gap:4px;justify-content:center;margin-top:8px}
+  .dots i{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.4}
+  .dots i.on{opacity:1}
+  .white .dots{color:#15160f}.dark .dots{color:var(--green)}
+
+  .cardlabel{position:absolute;bottom:9px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#9aa08c}
+  .note{max-width:430px;margin:20px auto 0;font-size:12.5px;color:#5a5f52;text-align:center;line-height:1.5}
+</style>
+</head>
+<body>
+<div>
+<div class="phone">
+
+  <!-- IG chrome -->
+  <div class="ig-top">
+    <div class="h">perpetualengine <span class="lock">▾</span></div>
+    <div class="dots">⋯</div>
+  </div>
+  <div class="ig-head">
+    <div class="ava"><b></b></div>
+    <div class="stats">
+      <div class="stat"><b>24</b><span>posts</span></div>
+      <div class="stat"><b>1,840</b><span>followers</span></div>
+      <div class="stat"><b>312</b><span>following</span></div>
+    </div>
+  </div>
+  <div class="ig-bio">
+    <div class="name">Perpetual Engine</div>
+    <div class="cat">Content & video</div>
+    <p>You record once. We make a month of it.<br>Done-for-you short-form, in your voice.</p>
+    <span class="link">↗ perpetualengine.co</span>
+  </div>
+  <div class="ig-actions">
+    <div class="b1">Follow</div>
+    <div class="b2">Message</div>
+  </div>
+  <div class="ig-tabs"><div class="on">▦</div><div>▶</div><div>♡</div></div>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <!-- 1 dark · brand intro -->
+    <div class="tile dark">
+      <div class="mk"><i></i>Perpetual Engine</div>
+      <div><div class="big">You record<br>once.</div><div class="sub">We make a month of it.</div></div>
+      <div class="sig">— in presence</div>
+    </div>
+
+    <!-- 2 dark · clip reel -->
+    <div class="tile dark clip trust">
+      <span class="ic reel"></span>
+      <div class="mk"><i></i>Clip</div>
+      <div><span class="tag">Reel</span><div class="cap">The one line people actually remember.</div></div>
+    </div>
+
+    <!-- 3 white · carousel -->
+    <div class="tile white">
+      <span class="ic caro"></span>
+      <div class="mk"><i></i>Carousel</div>
+      <div><div class="big">The film,<br>delete,<br>refilm <span class="grn">loop.</span></div><div class="ubar"></div></div>
+      <div class="dots"><i class="on"></i><i></i><i></i><i></i></div>
+    </div>
+
+    <!-- 4 dark · pain quote -->
+    <div class="tile dark">
+      <div class="mk"><i></i>Real talk</div>
+      <div class="quote">You post when work is slow. You <span class="grn">vanish</span> when you're busy.</div>
+      <div class="mk" style="opacity:.6"><i></i>Perpetual Engine</div>
+    </div>
+
+    <!-- 5 white · refutal -->
+    <div class="tile white">
+      <span class="ic caro"></span>
+      <div class="mk"><i></i>Carousel</div>
+      <div><div class="big">AI clippers<br>hand the work<br><span class="grn">back to you.</span></div><div class="ubar"></div></div>
+      <div class="dots"><i class="on"></i><i></i><i></i></div>
+    </div>
+
+    <!-- 6 dark · clip reel -->
+    <div class="tile dark clip listen">
+      <span class="ic reel"></span>
+      <div class="mk"><i></i>Clip</div>
+      <div><span class="tag">Reel</span><div class="cap">Cut to start and end on a whole thought.</div></div>
+    </div>
+
+    <!-- 7 white · offer -->
+    <div class="tile white">
+      <div class="mk"><i></i>Perpetual Engine</div>
+      <div><div class="big">One video.<br><span class="grn">A month of</span><br>content.</div><div class="ubar"></div></div>
+      <div class="mk" style="color:#9aa08c">First 5 · free setup</div>
+    </div>
+
+    <!-- 8 dark · quote -->
+    <div class="tile dark">
+      <div class="mk"><i></i>Real talk</div>
+      <div class="quote">Hiring an editor shouldn't feel like a <span class="grn">second job.</span></div>
+      <div class="mk" style="opacity:.6"><i></i>Perpetual Engine</div>
+    </div>
+
+    <!-- 9 dark · carousel -->
+    <div class="tile dark clip choose">
+      <span class="ic caro"></span>
+      <div class="mk"><i></i>Carousel</div>
+      <div><span class="tag">Save this</span><div class="cap">3 reasons your reels get buried (and the fix).</div></div>
+    </div>
+
+  </div>
+</div>
+<p class="note">Mockup of your feed. Dark, branded covers carry the grid; white big-caps covers break it on the diagonal, like your site. Handle <strong>@perpetualengine</strong> and the stats are placeholders.</p>
+</div>
+</body>
+</html>
