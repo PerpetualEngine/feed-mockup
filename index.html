@@ -4,205 +4,134 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<title>Perpetual Engine — Feed grid mockup (18)</title>
+<title>Perpetual Engine — Feed preview</title>
 <style>
   :root{
-    --green:#c9f57e; --ink:#18191b; --green-ink:#0d3300; --green-deep:#4e8c12; --soft:#bcd89a;
-    --dark1:#0e2f02; --dark2:#071c00;
+    --green:#c9f57e;--green-ink:#0d3300;--green-deep:#4e8c12;--ink:#18191b;
+    --sub:#5c5a54;--line:#e7e4dd;--bg:#fff;--panel:#f6f7f2;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;background:#e9ece3;display:flex;justify-content:center;padding:34px 16px 60px;-webkit-font-smoothing:antialiased}
-  .phone{width:430px;background:#fff;border-radius:30px;overflow:hidden;box-shadow:0 30px 80px rgba(13,51,0,.22)}
+  *{margin:0;box-sizing:border-box}
+  body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;letter-spacing:-.011em}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 28px}
 
-  /* IG chrome */
-  .ig-top{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 6px}
-  .ig-top .h{font-weight:700;font-size:17px;color:#18191b;display:flex;align-items:center;gap:6px}
-  .ig-top .h .lock{font-size:12px;color:#8a8f82}
-  .ig-top .dots{color:#18191b;font-size:20px;letter-spacing:2px}
-  .ig-head{display:flex;align-items:center;gap:24px;padding:10px 20px 4px}
-  .ava{width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#1c5a00,#0d3300);display:flex;align-items:center;justify-content:center;flex:0 0 auto;border:2px solid #fff;box-shadow:0 0 0 2px #d8e6c4}
-  .ava b{width:15px;height:15px;border-radius:50%;background:var(--green)}
-  .stats{display:flex;gap:26px;flex:1}
-  .stat{text-align:center}
-  .stat b{display:block;font-size:17px;color:#18191b;font-weight:700}
-  .stat span{font-size:13px;color:#5a5f52}
-  .ig-bio{padding:6px 20px 14px}
-  .ig-bio .name{font-weight:700;font-size:14px;color:#18191b}
-  .ig-bio .cat{font-size:13px;color:#5a5f52}
-  .ig-bio p{font-size:13.5px;color:#26281f;line-height:1.4;margin-top:3px}
-  .ig-bio .link{color:#3a6b16;font-weight:600;font-size:13.5px;margin-top:2px;display:inline-block}
-  .ig-actions{display:flex;gap:8px;padding:2px 20px 16px}
-  .ig-actions .b1{flex:1;background:#1c7a00;color:#fff;text-align:center;padding:8px;border-radius:9px;font-weight:600;font-size:14px}
-  .ig-actions .b2{flex:1;background:#eef1ea;color:#18191b;text-align:center;padding:8px;border-radius:9px;font-weight:600;font-size:14px}
-  .ig-tabs{display:flex;border-top:1px solid #ededed}
-  .ig-tabs div{flex:1;text-align:center;padding:11px;font-size:18px;color:#b7bbb0;border-bottom:2px solid transparent}
-  .ig-tabs div.on{color:#18191b;border-bottom:2px solid #18191b}
+  header{border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;gap:11px;height:64px}
+  .pe{width:30px;height:30px;border-radius:9px;background:var(--ink);color:var(--green);display:grid;place-items:center;font-weight:700;font-size:13px}
+  .wordmark{font-size:16px;font-weight:700}
+  .prep{margin-left:auto;font-size:12.5px;font-weight:600;color:var(--sub)}
 
-  /* GRID */
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;background:#fff}
-  .tile{position:relative;aspect-ratio:1/1;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:14px 13px}
-  .tile.center{justify-content:center}
-  .tile.dark{background:linear-gradient(158deg,var(--dark1),var(--dark2));color:#e7f2d6}
-  .tile.white{background:#fff;color:var(--ink)}
-  .tile.clip::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center}
-  .tile.clip.trust::before{background-image:url(posters/trust.jpg)}
-  .tile.clip.listen::before{background-image:url(posters/listen.jpg)}
-  .tile.clip.choose::before{background-image:url(posters/choose.jpg)}
-  .tile.clip.seven::before{background-image:url(posters/seven.jpg)}
-  .tile.clip.purpose::before{background-image:url(posters/purpose.jpg)}
-  .tile.clip::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,22,0,.30) 0%,rgba(6,22,0,.18) 45%,rgba(6,22,0,.84) 100%)}
-  .tile.clip > *{position:relative;z-index:2}
+  .hero{text-align:center;padding:58px 0 6px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--ink);background:var(--panel);padding:7px 15px;border-radius:999px;margin-bottom:20px}
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--green-deep)}
+  .hero h1{font-size:clamp(31px,4.7vw,46px);line-height:1.04;letter-spacing:-.03em;font-weight:700;max-width:16ch;margin:0 auto}
+  .hero p{font-size:17px;color:var(--sub);max-width:54ch;margin:17px auto 0}
 
-  .ic{position:absolute;top:14px;right:13px;z-index:3;opacity:.9}
-  .ic.reel::before{content:"";display:block;width:0;height:0;border-left:11px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent}
-  .ic.caro{width:13px;height:13px;border:1.5px solid currentColor;border-radius:3px;box-shadow:3px -3px 0 -1.5px currentColor}
-  .white .ic.caro{color:#c2c7ba}
+  /* FEED */
+  .feed{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;max-width:474px;margin:44px auto 0;border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(20,20,15,.12);border:1px solid var(--line)}
+  .cell{aspect-ratio:1/1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:16px 14px;position:relative;overflow:hidden}
+  .cell.l{background:#fff}
+  .cell.soft{background:var(--panel)}
+  .cell.g{background:linear-gradient(157deg,#11390b,#071c00);color:#eaf4dc}
+  .ch{font-size:14.5px;font-weight:700;line-height:1.18;letter-spacing:-.02em;color:var(--ink)}
+  .cell.g .ch{color:#fff}
+  .acc{color:var(--green-deep)}
+  .cell.g .acc{color:var(--green)}
+  .dotmark{position:absolute;top:12px;left:12px;width:7px;height:7px;border-radius:50%;background:var(--green-deep);opacity:.85}
+  .cell.g .dotmark{background:var(--green)}
 
-  /* white statement covers */
-  .big{font-weight:800;line-height:1.04;letter-spacing:-.3px;text-transform:uppercase;font-size:15px;color:#15160f}
-  .grn{color:var(--green-deep)}
-  .rule{height:2px;width:24px;background:var(--green-deep);margin-top:11px;border-radius:2px}
-  .dots{display:flex;gap:5px;margin-top:12px}
-  .dots i{width:4px;height:4px;border-radius:50%;background:#cfd4c8}
-  .dots i.on{background:var(--green-deep)}
+  /* photo cells */
+  .cell.p{padding:0;justify-content:flex-end;align-items:flex-start;text-align:left}
+  .cell.p .img{position:absolute;inset:0;background-size:cover;background-position:center}
+  .cell.p::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,26,0,.10) 0%,rgba(8,26,0,.12) 45%,rgba(8,26,0,.80) 100%)}
+  .cell.p .pcap{position:relative;z-index:2;padding:14px;font-size:11.5px;font-weight:600;color:#fff;line-height:1.3}
+  .cell.p .play{position:absolute;top:13px;right:13px;z-index:2;width:0;height:0;border-left:11px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent;opacity:.92}
 
-  /* dark covers */
-  .head{font-size:16px;font-weight:700;line-height:1.1;letter-spacing:-.2px;color:#fff}
-  .head .g{color:var(--green)}
-  .subline{font-size:10.5px;font-weight:500;color:var(--soft);margin-top:8px;letter-spacing:.2px}
-  .quote{font-size:13.5px;font-weight:500;line-height:1.4;color:#eaf4dc;letter-spacing:.1px}
-  .quote .g{color:var(--green);font-weight:600}
-  .cap{font-size:11.5px;font-weight:500;line-height:1.34;color:#f2f8e8;max-width:94%}
-  .sig{font-size:10px;color:var(--green);font-style:italic;opacity:.85;letter-spacing:.2px}
+  /* note */
+  .rule{height:1px;background:var(--line);max-width:474px;margin:46px auto 0}
+  .note{max-width:474px;margin:30px auto 0}
+  .neyebrow{font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--green-deep);margin-bottom:18px}
+  .nrow{display:flex;gap:13px;align-items:flex-start;margin-bottom:15px}
+  .nnum{flex:none;width:24px;height:24px;border-radius:50%;background:var(--green);color:var(--green-ink);display:grid;place-items:center;font-size:12px;font-weight:700}
+  .nrow p{font-size:15px;color:var(--ink);line-height:1.45}
+  .nrow p b{font-weight:700}
 
-  .note{max-width:430px;margin:20px auto 0;font-size:12.5px;color:#5a5f52;text-align:center;line-height:1.5}
+  footer{border-top:1px solid var(--line);margin-top:50px;padding:24px 0}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .foot .wm{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px}
+  .foot .wm .pe{width:24px;height:24px;border-radius:7px;font-size:11px}
+  .foot a{color:var(--green-deep);text-decoration:none;font-weight:600;font-size:14px}
+  .foot .cp{font-size:13px;color:var(--sub)}
+
+  @media(max-width:540px){.hero h1{font-size:30px}.feed{max-width:100%}}
 </style>
 </head>
 <body>
-<div>
-<div class="phone">
 
-  <div class="ig-top">
-    <div class="h">perpetualengine <span class="lock">▾</span></div>
-    <div class="dots">⋯</div>
-  </div>
-  <div class="ig-head">
-    <div class="ava"><b></b></div>
-    <div class="stats">
-      <div class="stat"><b>48</b><span>posts</span></div>
-      <div class="stat"><b>2,140</b><span>followers</span></div>
-      <div class="stat"><b>318</b><span>following</span></div>
-    </div>
-  </div>
-  <div class="ig-bio">
-    <div class="name">Perpetual Engine</div>
-    <div class="cat">Content &amp; video</div>
-    <p>We revive your content graveyard in 48 hours. With taste.<br>Human-led, AI-powered.</p>
-    <span class="link">↗ perpetualengine.co</span>
-  </div>
-  <div class="ig-actions">
-    <div class="b1">Follow</div>
-    <div class="b2">Message</div>
-  </div>
-  <div class="ig-tabs"><div class="on">▦</div><div>▶</div><div>♡</div></div>
+<header><div class="wrap bar">
+  <div class="pe">PE</div><div class="wordmark">Perpetual Engine</div>
+  <span class="prep">A feed preview</span>
+</div></header>
 
-  <div class="grid">
+<main class="wrap">
+  <section class="hero">
+    <span class="eyebrow"><span class="dot"></span> A feed preview</span>
+    <h1>What your feed becomes.</h1>
+    <p>One video a week, turned into a grid people stop on. Your voice, your taste, posted for you.</p>
+  </section>
 
-    <!-- 1 white -->
-    <div class="tile white center"><span class="ic caro"></span>
-      <div><div class="big">Making is free. <span class="grn">Taste is rare.</span></div><div class="rule"></div></div>
-    </div>
+  <section class="feed">
+    <!-- 1 -->
+    <div class="cell g"><span class="dotmark"></span><div class="ch">We revive your <span class="acc">content graveyard.</span></div></div>
+    <!-- 2 -->
+    <div class="cell l"><span class="dotmark"></span><div class="ch">Taste is the <span class="acc">only edge.</span></div></div>
+    <!-- 3 photo -->
+    <div class="cell p"><div class="img" style="background-image:url(posters/trust.jpg)"></div><span class="play"></span><div class="pcap">The line people remember.</div></div>
+    <!-- 4 -->
+    <div class="cell soft"><span class="dotmark"></span><div class="ch">You focus. We <span class="acc">keep it alive.</span></div></div>
+    <!-- 5 photo -->
+    <div class="cell p"><div class="img" style="background-image:url(posters/listen.jpg)"></div><span class="play"></span><div class="pcap">A whole thought, start to end.</div></div>
+    <!-- 6 -->
+    <div class="cell g"><span class="dotmark"></span><div class="ch">Making is free. <span class="acc">Taste is rare.</span></div></div>
+    <!-- 7 photo -->
+    <div class="cell p"><div class="img" style="background-image:url(posters/choose.jpg)"></div><span class="play"></span><div class="pcap">Cut from one long video.</div></div>
+    <!-- 8 -->
+    <div class="cell l"><span class="dotmark"></span><div class="ch">Knowing what <span class="acc">to keep.</span></div></div>
+    <!-- 9 -->
+    <div class="cell soft"><span class="dotmark"></span><div class="ch">Recorded once. <span class="acc">Never posted.</span></div></div>
+    <!-- 10 -->
+    <div class="cell g"><span class="dotmark"></span><div class="ch">Machine speed. <span class="acc">Human taste.</span></div></div>
+    <!-- 11 photo -->
+    <div class="cell p"><div class="img" style="background-image:url(posters/seven.jpg)"></div><span class="play"></span><div class="pcap">A month from one talk.</div></div>
+    <!-- 12 -->
+    <div class="cell l"><span class="dotmark"></span><div class="ch">Powered by AI. <span class="acc">Decided by a human.</span></div></div>
+    <!-- 13 -->
+    <div class="cell soft"><span class="dotmark"></span><div class="ch">Agency taste, at <span class="acc">AI speed and price.</span></div></div>
+    <!-- 14 photo -->
+    <div class="cell p"><div class="img" style="background-image:url(posters/purpose.jpg)"></div><span class="play"></span><div class="pcap">Your voice, kept intact.</div></div>
+    <!-- 15 -->
+    <div class="cell l"><span class="dotmark"></span><div class="ch">AI cuts a hundred. <span class="acc">We keep ten.</span></div></div>
+    <!-- 16 -->
+    <div class="cell g"><span class="dotmark"></span><div class="ch">One video. <span class="acc">A month.</span></div></div>
+    <!-- 17 -->
+    <div class="cell soft"><span class="dotmark"></span><div class="ch">Posting is a <span class="acc">second job.</span></div></div>
+    <!-- 18 -->
+    <div class="cell l"><span class="dotmark"></span><div class="ch">Send <span class="acc">one video.</span></div></div>
+  </section>
 
-    <!-- 2 dark brand -->
-    <div class="tile dark">
-      <span></span>
-      <div><div class="head">We revive your <span class="g">content graveyard.</span></div><div class="subline">In 48 hours. With taste.</div></div>
-      <div class="sig">in presence</div>
-    </div>
+  <div class="rule"></div>
+  <section class="note">
+    <div class="neyebrow">What you're seeing</div>
+    <div class="nrow"><div class="nnum">1</div><p>Every cover comes from <b>one video a week</b>. Reels, carousels, and posts, in your voice.</p></div>
+    <div class="nrow"><div class="nnum">2</div><p>Dark covers carry the grid. Light covers break it. Your clips sit in between.</p></div>
+    <div class="nrow"><div class="nnum">3</div><p>Cut, captioned, graded, and <b>posted for you</b>. Your week costs you fifteen minutes.</p></div>
+  </section>
+</main>
 
-    <!-- 3 dark clip -->
-    <div class="tile dark clip trust"><span class="ic reel"></span>
-      <span></span><div class="cap">The line people remember.</div>
-    </div>
+<footer><div class="wrap foot">
+  <span class="wm"><span class="pe">PE</span>Perpetual Engine</span>
+  <a href="mailto:hello@perpetualengine.co">hello@perpetualengine.co</a>
+  <span class="cp">© 2026</span>
+</div></footer>
 
-    <!-- 4 dark note (hybrid) -->
-    <div class="tile dark center">
-      <div class="quote">AI cuts a hundred. A <span class="g">human keeps ten.</span></div>
-    </div>
-
-    <!-- 5 dark clip -->
-    <div class="tile dark clip listen"><span class="ic reel"></span>
-      <span></span><div class="cap">Starts and ends on a whole thought.</div>
-    </div>
-
-    <!-- 6 white (thesis) -->
-    <div class="tile white center"><span class="ic caro"></span>
-      <div><div class="big">Taste is the <span class="grn">only edge.</span></div><div class="rule"></div></div>
-    </div>
-
-    <!-- 7 dark note -->
-    <div class="tile dark center">
-      <div class="quote">You focus. We <span class="g">keep it alive.</span></div>
-    </div>
-
-    <!-- 8 white (thesis) -->
-    <div class="tile white center"><span class="ic caro"></span>
-      <div><div class="big">Knowing what <span class="grn">to keep.</span></div><div class="rule"></div></div>
-    </div>
-
-    <!-- 9 dark clip -->
-    <div class="tile dark clip choose"><span class="ic reel"></span>
-      <span></span><div class="cap">Cut from one long video.</div>
-    </div>
-
-    <!-- 10 dark note (hybrid) -->
-    <div class="tile dark center">
-      <div class="quote">Machine speed. <span class="g">Human taste.</span></div>
-    </div>
-
-    <!-- 11 white offer -->
-    <div class="tile white center">
-      <div><div class="big">One video. <span class="grn">A month.</span></div><div class="rule"></div></div>
-    </div>
-
-    <!-- 12 dark clip -->
-    <div class="tile dark clip seven"><span class="ic reel"></span>
-      <span></span><div class="cap">A month from one talk.</div>
-    </div>
-
-    <!-- 13 white (hybrid) -->
-    <div class="tile white center"><span class="ic caro"></span>
-      <div><div class="big">Powered by AI. <span class="grn">Decided by a human.</span></div><div class="rule"></div></div>
-    </div>
-
-    <!-- 14 dark pain -->
-    <div class="tile dark center">
-      <div class="quote">Recorded once. <span class="g">Never posted.</span></div>
-    </div>
-
-    <!-- 15 dark clip -->
-    <div class="tile dark clip purpose"><span class="ic reel"></span>
-      <span></span><div class="cap">Your voice, kept intact.</div>
-    </div>
-
-    <!-- 16 dark note (hybrid value) -->
-    <div class="tile dark center">
-      <div class="quote">Agency taste, at <span class="g">AI speed and price.</span></div>
-    </div>
-
-    <!-- 17 dark pain -->
-    <div class="tile dark center">
-      <div class="quote">Posting is a <span class="g">second job.</span></div>
-    </div>
-
-    <!-- 18 white CTA -->
-    <div class="tile white center">
-      <div><div class="big">Send <span class="grn">one video.</span></div><div class="rule"></div></div>
-    </div>
-
-  </div>
-</div>
-<p class="note">Mockup of your feed, 18 posts. Dark covers carry the grid; white big-caps covers break it on the diagonal. New thesis + hybrid messaging, your real clip stills. Handle <strong>@perpetualengine</strong> and stats are placeholders.</p>
-</div>
 </body>
 </html>
