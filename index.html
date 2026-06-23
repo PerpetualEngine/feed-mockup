@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<title>Perpetual Engine — Feed grid mockup</title>
+<title>Perpetual Engine — Feed grid mockup (18)</title>
 <style>
   :root{
-    --green:#c9f57e; --ink:#18191b; --green-ink:#0d3300; --green-deep:#4e8c12;
-    --dark1:#0e2f02; --dark2:#071c00; --soft:#bcd89a;
+    --green:#c9f57e; --ink:#18191b; --green-ink:#0d3300; --green-deep:#4e8c12; --soft:#bcd89a;
+    --dark1:#0e2f02; --dark2:#071c00;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;background:#e9ece3;display:flex;justify-content:center;padding:34px 16px 60px;-webkit-font-smoothing:antialiased}
@@ -40,46 +40,40 @@
 
   /* GRID */
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;background:#fff}
-  .tile{position:relative;aspect-ratio:1/1;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:16px 15px}
+  .tile{position:relative;aspect-ratio:1/1;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:14px 13px}
+  .tile.center{justify-content:center}
   .tile.dark{background:linear-gradient(158deg,var(--dark1),var(--dark2));color:#e7f2d6}
   .tile.white{background:#fff;color:var(--ink)}
   .tile.clip::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center}
   .tile.clip.trust::before{background-image:url(posters/trust.jpg)}
   .tile.clip.listen::before{background-image:url(posters/listen.jpg)}
   .tile.clip.choose::before{background-image:url(posters/choose.jpg)}
-  .tile.clip::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,22,0,.30) 0%,rgba(6,22,0,.20) 45%,rgba(6,22,0,.82) 100%)}
+  .tile.clip.seven::before{background-image:url(posters/seven.jpg)}
+  .tile.clip.purpose::before{background-image:url(posters/purpose.jpg)}
+  .tile.clip::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,22,0,.30) 0%,rgba(6,22,0,.18) 45%,rgba(6,22,0,.84) 100%)}
   .tile.clip > *{position:relative;z-index:2}
 
-  /* tiny editorial label (replaces chunky pills) */
-  .lbl{font-size:8.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
-  .dark .lbl{color:var(--green)}
-  .white .lbl{color:var(--green-deep)}
-  .clip .lbl{color:#dceec0}
-  .lbl .dim{opacity:.55;letter-spacing:2px}
-
-  /* type icon top-right, subtle */
-  .ic{position:absolute;top:17px;right:16px;z-index:3;opacity:.9}
+  .ic{position:absolute;top:14px;right:13px;z-index:3;opacity:.9}
   .ic.reel::before{content:"";display:block;width:0;height:0;border-left:11px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent}
   .ic.caro{width:13px;height:13px;border:1.5px solid currentColor;border-radius:3px;box-shadow:3px -3px 0 -1.5px currentColor}
   .white .ic.caro{color:#c2c7ba}
-  .dark .ic.caro{color:#7f9c63}
 
-  /* white statement covers — the loud breakers */
-  .big{font-weight:800;line-height:1.04;letter-spacing:-.3px;text-transform:uppercase;font-size:16px;color:#15160f}
+  /* white statement covers */
+  .big{font-weight:800;line-height:1.04;letter-spacing:-.3px;text-transform:uppercase;font-size:15px;color:#15160f}
   .grn{color:var(--green-deep)}
-  .rule{height:2px;width:26px;background:var(--green-deep);margin-top:12px;border-radius:2px}
-  .dots{display:flex;gap:5px;margin-top:14px}
+  .rule{height:2px;width:24px;background:var(--green-deep);margin-top:11px;border-radius:2px}
+  .dots{display:flex;gap:5px;margin-top:12px}
   .dots i{width:4px;height:4px;border-radius:50%;background:#cfd4c8}
   .dots i.on{background:var(--green-deep)}
 
-  /* dark covers — quiet, refined, airy */
-  .head{font-size:18px;font-weight:700;line-height:1.08;letter-spacing:-.2px;color:#fff}
+  /* dark covers */
+  .head{font-size:16px;font-weight:700;line-height:1.1;letter-spacing:-.2px;color:#fff}
   .head .g{color:var(--green)}
-  .subline{font-size:11px;font-weight:500;color:var(--soft);margin-top:9px;letter-spacing:.2px}
-  .quote{font-size:15px;font-weight:500;line-height:1.42;color:#eaf4dc;letter-spacing:.1px}
+  .subline{font-size:10.5px;font-weight:500;color:var(--soft);margin-top:8px;letter-spacing:.2px}
+  .quote{font-size:13.5px;font-weight:500;line-height:1.4;color:#eaf4dc;letter-spacing:.1px}
   .quote .g{color:var(--green);font-weight:600}
-  .cap{font-size:12px;font-weight:500;line-height:1.35;color:#f2f8e8;max-width:90%}
-  .sig{font-size:10.5px;color:var(--green);font-style:italic;opacity:.85;letter-spacing:.2px}
+  .cap{font-size:11.5px;font-weight:500;line-height:1.34;color:#f2f8e8;max-width:94%}
+  .sig{font-size:10px;color:var(--green);font-style:italic;opacity:.85;letter-spacing:.2px}
 
   .note{max-width:430px;margin:20px auto 0;font-size:12.5px;color:#5a5f52;text-align:center;line-height:1.5}
 </style>
@@ -95,15 +89,15 @@
   <div class="ig-head">
     <div class="ava"><b></b></div>
     <div class="stats">
-      <div class="stat"><b>24</b><span>posts</span></div>
-      <div class="stat"><b>1,840</b><span>followers</span></div>
-      <div class="stat"><b>312</b><span>following</span></div>
+      <div class="stat"><b>48</b><span>posts</span></div>
+      <div class="stat"><b>2,140</b><span>followers</span></div>
+      <div class="stat"><b>318</b><span>following</span></div>
     </div>
   </div>
   <div class="ig-bio">
     <div class="name">Perpetual Engine</div>
     <div class="cat">Content &amp; video</div>
-    <p>You record once. We make a month of it.<br>Done-for-you short-form, in your voice.</p>
+    <p>We revive your content graveyard in 48 hours. With taste.<br>Human-led, AI-powered.</p>
     <span class="link">↗ perpetualengine.co</span>
   </div>
   <div class="ig-actions">
@@ -114,85 +108,101 @@
 
   <div class="grid">
 
-    <!-- 1 dark · brand intro (quiet) -->
+    <!-- 1 white -->
+    <div class="tile white center"><span class="ic caro"></span>
+      <div><div class="big">Making is free. <span class="grn">Taste is rare.</span></div><div class="rule"></div></div>
+    </div>
+
+    <!-- 2 dark brand -->
     <div class="tile dark">
       <span></span>
-      <div>
-        <div class="head">You record once.</div>
-        <div class="subline">We make a month of it.</div>
-      </div>
+      <div><div class="head">We revive your <span class="g">content graveyard.</span></div><div class="subline">In 48 hours. With taste.</div></div>
       <div class="sig">in presence</div>
     </div>
 
-    <!-- 2 dark · clip -->
-    <div class="tile dark clip trust">
-      <span class="ic reel"></span>
-      <span></span>
-      <div class="cap">The one line people actually remember.</div>
+    <!-- 3 dark clip -->
+    <div class="tile dark clip trust"><span class="ic reel"></span>
+      <span></span><div class="cap">The line people remember.</div>
     </div>
 
-    <!-- 3 white · carousel (loud) -->
-    <div class="tile white">
-      <span class="ic caro"></span>
-      <span></span>
-      <div>
-        <div class="big">The film,<br>delete,<br>refilm <span class="grn">loop.</span></div>
-        <div class="rule"></div>
-      </div>
-      <div class="dots"><i class="on"></i><i></i><i></i><i></i></div>
+    <!-- 4 dark note (hybrid) -->
+    <div class="tile dark center">
+      <div class="quote">AI cuts a hundred. A <span class="g">human keeps ten.</span></div>
     </div>
 
-    <!-- 4 dark · quote (refined) -->
-    <div class="tile dark">
-      <span></span>
-      <div class="quote">You post when work is slow. You <span class="g">vanish</span> when you're busy.</div>
-      <span></span>
+    <!-- 5 dark clip -->
+    <div class="tile dark clip listen"><span class="ic reel"></span>
+      <span></span><div class="cap">Starts and ends on a whole thought.</div>
     </div>
 
-    <!-- 5 white · refutal (loud) -->
-    <div class="tile white">
-      <span class="ic caro"></span>
-      <span></span>
-      <div>
-        <div class="big">AI clippers<br>hand the<br>work back<br><span class="grn">to you.</span></div>
-        <div class="rule"></div>
-      </div>
+    <!-- 6 white (thesis) -->
+    <div class="tile white center"><span class="ic caro"></span>
+      <div><div class="big">Taste is the <span class="grn">only edge.</span></div><div class="rule"></div></div>
     </div>
 
-    <!-- 6 dark · clip -->
-    <div class="tile dark clip listen">
-      <span class="ic reel"></span>
-      <span></span>
-      <div class="cap">Cut to start and end on a whole thought.</div>
+    <!-- 7 dark note -->
+    <div class="tile dark center">
+      <div class="quote">You focus. We <span class="g">keep it alive.</span></div>
     </div>
 
-    <!-- 7 white · offer (loud) -->
-    <div class="tile white">
-      <span></span>
-      <div>
-        <div class="big">One video.<br><span class="grn">A month of</span><br>content.</div>
-        <div class="rule"></div>
-      </div>
-      <div class="lbl" style="color:#a7ad9c">Founding offer</div>
+    <!-- 8 white (thesis) -->
+    <div class="tile white center"><span class="ic caro"></span>
+      <div><div class="big">Knowing what <span class="grn">to keep.</span></div><div class="rule"></div></div>
     </div>
 
-    <!-- 8 dark · quote (refined) -->
-    <div class="tile dark">
-      <span></span>
-      <div class="quote">Hiring an editor shouldn't feel like a <span class="g">second job.</span></div>
-      <span></span>
+    <!-- 9 dark clip -->
+    <div class="tile dark clip choose"><span class="ic reel"></span>
+      <span></span><div class="cap">Cut from one long video.</div>
     </div>
 
-    <!-- 9 dark · carousel clip -->
-    <div class="tile dark clip choose">
-      <span class="ic caro"></span>
-      <span></span>
-      <div class="cap">3 reasons your reels get buried, and the fix.</div>
+    <!-- 10 dark note (hybrid) -->
+    <div class="tile dark center">
+      <div class="quote">Machine speed. <span class="g">Human taste.</span></div>
+    </div>
+
+    <!-- 11 white offer -->
+    <div class="tile white center">
+      <div><div class="big">One video. <span class="grn">A month.</span></div><div class="rule"></div></div>
+    </div>
+
+    <!-- 12 dark clip -->
+    <div class="tile dark clip seven"><span class="ic reel"></span>
+      <span></span><div class="cap">A month from one talk.</div>
+    </div>
+
+    <!-- 13 white (hybrid) -->
+    <div class="tile white center"><span class="ic caro"></span>
+      <div><div class="big">Powered by AI. <span class="grn">Decided by a human.</span></div><div class="rule"></div></div>
+    </div>
+
+    <!-- 14 dark pain -->
+    <div class="tile dark center">
+      <div class="quote">Recorded once. <span class="g">Never posted.</span></div>
+    </div>
+
+    <!-- 15 dark clip -->
+    <div class="tile dark clip purpose"><span class="ic reel"></span>
+      <span></span><div class="cap">Your voice, kept intact.</div>
+    </div>
+
+    <!-- 16 dark note (hybrid value) -->
+    <div class="tile dark center">
+      <div class="quote">Agency taste, at <span class="g">AI speed and price.</span></div>
+    </div>
+
+    <!-- 17 dark pain -->
+    <div class="tile dark center">
+      <div class="quote">Posting is a <span class="g">second job.</span></div>
+    </div>
+
+    <!-- 18 white CTA -->
+    <div class="tile white center">
+      <div><div class="big">Send <span class="grn">one video.</span></div><div class="rule"></div></div>
     </div>
 
   </div>
 </div>
-<p class="note">Mockup of your feed. Dark covers carry the grid and stay quiet; white big-caps covers break it on the diagonal, like your site. Handle <strong>@perpetualengine</strong> and stats are placeholders.</p>
+<p class="note">Mockup of your feed, 18 posts. Dark covers carry the grid; white big-caps covers break it on the diagonal. New thesis + hybrid messaging, your real clip stills. Handle <strong>@perpetualengine</strong> and stats are placeholders.</p>
 </div>
 </body>
 </html>
